@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FWymIq4Tsmb+lwghZxm5nOUMpk2yizPgZTW7Y90BS+mwCkrswkVVIRQOvEihw+8wajzwn2sJ/mH4+yNZulljxQ==",
+  "dgSpecHash": "A1aNIGcwUdU6NMXb9Q7yfXl4d0g6aKHDarHlJWp6SLq7WIDVW+xBETmseXPLnjvIL97NHW0UUD2kKh9iZ+TOIQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ahmet\\Desktop\\Bootcamp\\SessionService\\SessionService\\SessionService.csproj",
+  "projectFilePath": "C:\\Users\\Ahmet\\OneDrive\\Masaüstü\\TgySession\\TgySession\\SessionService\\SessionService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ahmet\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Ahmet\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

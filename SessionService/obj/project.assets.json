@@ -7421,19 +7421,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Ahmet\\.nuget\\packages\\": {}
+    "C:\\Users\\Ahmet\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ahmet\\Desktop\\Bootcamp\\SessionService\\SessionService\\SessionService.csproj",
+      "projectUniqueName": "C:\\Users\\Ahmet\\OneDrive\\Masaüstü\\TgySession\\TgySession\\SessionService\\SessionService.csproj",
       "projectName": "SessionService",
-      "projectPath": "C:\\Users\\Ahmet\\Desktop\\Bootcamp\\SessionService\\SessionService\\SessionService.csproj",
+      "projectPath": "C:\\Users\\Ahmet\\OneDrive\\Masaüstü\\TgySession\\TgySession\\SessionService\\SessionService.csproj",
       "packagesPath": "C:\\Users\\Ahmet\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ahmet\\Desktop\\Bootcamp\\SessionService\\SessionService\\obj\\",
+      "outputPath": "C:\\Users\\Ahmet\\OneDrive\\Masaüstü\\TgySession\\TgySession\\SessionService\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
         "C:\\Users\\Ahmet\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7516,7 +7521,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

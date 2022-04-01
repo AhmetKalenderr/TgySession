@@ -60,16 +60,9 @@ namespace SessionService.Controllers
         public Result<object> GetAllCustomer()
         {
 
-            var customer = _databaseContext.Customers.Select(c => new
-            {
-                c.Name,
-                c.Surname,
-                c.segment 
-            });
-
             return new Result<object>
             {
-                data = _databaseContext.Customers.Include(c=> c.segment),
+                data = _databaseContext.Customers.Include(c=> c.segment).ToList(),
                 Message = "Başarılı",
                 Success = true,
             };
@@ -77,7 +70,7 @@ namespace SessionService.Controllers
 
         [HttpPost("/updatecustomer")]
 
-        public Result<object> UpdateCustomer([FromBody]Customer customer)
+        public Result<object> UpdateCustomer([FromBody]CustomerAddBody customer)
         {
 
             try
@@ -91,8 +84,6 @@ namespace SessionService.Controllers
                 _databaseContext.SaveChanges();
                 success = true;
                 message = "Başarılı";
-
-
             }
             catch (Exception e)
             {
@@ -148,7 +139,7 @@ namespace SessionService.Controllers
             Customer customer = new Customer();
             try
             {
-                customer = _databaseContext.Customers.Include(customer => customer.segment).Single(customer => customer.Id == id);
+                customer = _databaseContext.Customers.Include(customer => customer.segment).AsNoTracking().Single(customer => customer.Id == id);
                 message = "Başarılı";
                 success = true;
             }
@@ -177,7 +168,7 @@ namespace SessionService.Controllers
 
             try
             {
-                customers = _databaseContext.Customers.Include(_databaseContext => _databaseContext.segment).Where(_databaseContext => _databaseContext.Name.StartsWith(name)).ToList();
+                customers = _databaseContext.Customers.Include(_databaseContext => _databaseContext.segment).Where(_databaseContext => _databaseContext.Name.Equals(name)).AsNoTracking().ToList();
                 message = "Başarılı";
                 success = true;
             }
