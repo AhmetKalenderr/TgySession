@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SessionService.Core;
+using SessionService.DatabaseObject;
 using SessionService.Entities;
 using SessionService.Models;
 using System;
@@ -12,26 +14,24 @@ namespace SessionService.Controllers
     public class CustomerController : Controller
     {
         private readonly TgyDatabaseContext _databaseContext;
+        private readonly IMapper mapper;
         bool success;
         string message = String.Empty;
 
-        public CustomerController(TgyDatabaseContext tgyDatabaseContext)
+        public CustomerController(TgyDatabaseContext tgyDatabaseContext,IMapper mapper)
         {
             _databaseContext = tgyDatabaseContext;
+            this.mapper = mapper;
+
         }
 
         [HttpPost("/addcustomer")]
 
-        public Result<object> AddCustomer([FromBody]CustomerAddBody customer)
+        public Result<object> AddCustomer([FromBody]AddCustomerDto customer)
         {
             try
             {
-                Customer addedCustomer = new Customer
-                {
-                    Name = customer.Name,
-                    Surname = customer.Surname,
-                    SegmentId = customer.SegmentId,
-                };
+                Customer addedCustomer = mapper.Map<Customer>(customer);
 
                 _databaseContext.Customers.Add(addedCustomer);
                 _databaseContext.SaveChanges();
@@ -70,16 +70,39 @@ namespace SessionService.Controllers
 
         [HttpPost("/updatecustomer")]
 
-        public Result<object> UpdateCustomer([FromBody]CustomerAddBody customer)
+        public Result<object> UpdateCustomer([FromBody]UpdateCustomerDto customer)
         {
 
             try
             {
                 Customer updatedCustomer = _databaseContext.Customers.Single(c => c.Id == customer.Id);
 
-                updatedCustomer.Name = customer.Name;
-                updatedCustomer.Surname = customer.Surname;
-                updatedCustomer.SegmentId = customer.SegmentId;
+
+
+                //Sorulacak..
+                #region Trading
+
+                mapper.Map(customer,updatedCustomer);
+
+
+                //updatedCustomer = mapper.Map<Customer>(customer);
+
+                Console.WriteLine($"{updatedCustomer.Id} {updatedCustomer.Name} : {updatedCustomer.Surname} : {updatedCustomer.SegmentId}");
+
+                //_databaseContext.Customers.Attach(updatedCustomer);
+
+                //if (updatedCustomer != null)
+                //{
+                //    _databaseContext.Set<Customer>().Attach(updatedCustomer);
+
+                //    _databaseContext.Entry<Customer>(updatedCustomer).State = EntityState.Modified;
+                //}
+                #endregion
+
+
+                //updatedCustomer.Name = customer.Name;
+                //updatedCustomer.Surname = customer.Surname;
+                //updatedCustomer.SegmentId = customer.SegmentId;
 
                 _databaseContext.SaveChanges();
                 success = true;

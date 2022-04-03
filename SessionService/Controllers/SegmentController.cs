@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SessionService.Core;
+using SessionService.DatabaseObject;
 using SessionService.Entities;
 using SessionService.Models;
 using System;
@@ -75,7 +76,7 @@ namespace SessionService.Controllers
 
         [HttpPost("/updatesegment")]
 
-        public Result<object> UpdateSegment([FromBody]Segment segment)
+        public Result<object> UpdateSegment([FromBody] UpdateSegmentDto segment)
         {
             try
             {

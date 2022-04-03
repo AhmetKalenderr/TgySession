@@ -1,8 +1,7 @@
-﻿namespace SessionService.Entities
+﻿namespace SessionService.DatabaseObject
 {
-    public class CustomerAddBody
+    public class AddCustomerDto
     {
-        public int Id { get; set; }
         public string Name { get; set; }
 
         public string Surname { get; set; }
