@@ -13,6 +13,8 @@ namespace SessionService.Models
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Segment> Segments { get; set; }
 
+        public DbSet<Log> Logs { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
