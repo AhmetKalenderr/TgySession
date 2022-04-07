@@ -418,3 +418,9 @@ C:\Users\Ahmet\Desktop\Bootcamp\TgySession\SessionService\obj\Debug\net5.0\refin
 C:\Users\Ahmet\Desktop\Bootcamp\TgySession\SessionService\obj\Debug\net5.0\SessionService.pdb
 C:\Users\Ahmet\Desktop\Bootcamp\TgySession\SessionService\obj\Debug\net5.0\SessionService.genruntimeconfig.cache
 C:\Users\Ahmet\Desktop\Bootcamp\TgySession\SessionService\obj\Debug\net5.0\ref\SessionService.dll
+C:\Users\Ahmet\OneDrive\Masaüstü\TgySession\TgySession\SessionService\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\Ahmet\OneDrive\Masaüstü\TgySession\TgySession\SessionService\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Ahmet\OneDrive\Masaüstü\TgySession\TgySession\SessionService\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Ahmet\OneDrive\Masaüstü\TgySession\TgySession\SessionService\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+C:\Users\Ahmet\OneDrive\Masaüstü\TgySession\TgySession\SessionService\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\Users\Ahmet\OneDrive\Masaüstü\TgySession\TgySession\SessionService\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll

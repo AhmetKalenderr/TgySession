@@ -8,7 +8,6 @@ namespace SessionService.Profiles
     {
         public MappingProfile()
         {
-            CreateMap<Customer, AddCustomerDto>();
             CreateMap<AddCustomerDto, Customer>();
             CreateMap<UpdateCustomerDto, Customer>();
         }

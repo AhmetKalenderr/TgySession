@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "m8j1fzXETDtSjTlacnUAaZHMYHIY7BSFnRmvhbBvMKa8VRvhVkxdEsJULrwGpu9XP3gkY7tnk3AE3Xy2OxmxLg==",
+  "dgSpecHash": "AxmCbLtELUkts6qp1lSHbknS1rD3N9TD05VIY1ZRJfbyIvuJ+xVAJXHeSPDEr+MdIAQPLgjsT0y18DXHTKIpDw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ahmet\\Desktop\\Bootcamp\\TgySession\\SessionService\\SessionService.csproj",
+  "projectFilePath": "C:\\Users\\Ahmet\\OneDrive\\Masaüstü\\TgySession\\TgySession\\SessionService\\SessionService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ahmet\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\Ahmet\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

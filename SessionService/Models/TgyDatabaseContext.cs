@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SessionService.Entities;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SessionService.Models
 {
@@ -22,6 +24,10 @@ namespace SessionService.Models
                 .HasOne(c => c.segment)
                 .WithMany()
                 .HasForeignKey(s=>s.SegmentId);
-        }     
+        }
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            return base.SaveChangesAsync(cancellationToken);
+        }
     }   
 }

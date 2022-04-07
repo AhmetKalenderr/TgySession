@@ -137,31 +137,10 @@ namespace SessionService.Controllers
 
 
 
-                //Sorulacak..
-                #region Trading
-
                 mapper.Map(customer,updatedCustomer);
 
 
-                //updatedCustomer = mapper.Map<Customer>(customer);
 
-                Console.WriteLine($"{updatedCustomer.Id} {updatedCustomer.Name} : {updatedCustomer.Surname} : {updatedCustomer.SegmentId}");
-
-
-                //_databaseContext.Customers.Attach(updatedCustomer);
-
-                //if (updatedCustomer != null)
-                //{
-                //    _databaseContext.Set<Customer>().Attach(updatedCustomer);
-
-                //    _databaseContext.Entry<Customer>(updatedCustomer).State = EntityState.Modified;
-                //}
-                #endregion
-
-
-                //updatedCustomer.Name = customer.Name;
-                //updatedCustomer.Surname = customer.Surname;
-                //updatedCustomer.SegmentId = customer.SegmentId;
 
                 await _databaseContext.SaveChangesAsync();
                 success = true;
