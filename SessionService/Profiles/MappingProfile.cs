@@ -11,6 +11,9 @@ namespace SessionService.Profiles
             CreateMap<Customer, AddCustomerDto>();
             CreateMap<AddCustomerDto, Customer>();
             CreateMap<UpdateCustomerDto, Customer>();
+            CreateMap<Segment,UpdateSegmentDto>();
+            CreateMap<UpdateSegmentDto, Segment>();
+
         }
     }
 }

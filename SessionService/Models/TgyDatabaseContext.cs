@@ -1,5 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Newtonsoft.Json;
 using SessionService.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SessionService.Models
 {
@@ -22,6 +29,33 @@ namespace SessionService.Models
                 .HasOne(c => c.segment)
                 .WithMany()
                 .HasForeignKey(s=>s.SegmentId);
-        }     
+
+        }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            ChangeTracker.DetectChanges();
+
+            IEnumerable<EntityEntry> entries = ChangeTracker.Entries().ToList();
+
+            foreach (var entry in entries)
+            {
+                if (entry.Entity is Customer)
+                {
+                    Customer customer = (Customer)entry.Entity;
+                    customer.segment = Segments.Find(customer.SegmentId);
+                    Logs.Add(new Log() { ActionTime = DateTime.Now.ToLocalTime(), ActionType = entry.State.ToString(), Data = JsonConvert.SerializeObject(customer), TableName = "Customer" });
+                }
+                else if (entry.Entity is Segment)
+                {
+                    Segment segment = (Segment)entry.Entity;
+                    Logs.Add(new Log() { ActionTime = DateTime.Now.ToLocalTime(), ActionType = entry.State.ToString(), Data = JsonConvert.SerializeObject(segment), TableName = "Segment" });
+                }
+
+
+            }
+
+            return base.SaveChangesAsync();
+        }
     }   
 }

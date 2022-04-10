@@ -7,6 +7,8 @@ using Microsoft.OpenApi.Models;
 using SessionService.Models;
 
 using Microsoft.EntityFrameworkCore;
+using SessionService.Interfaces;
+using SessionService.Repository;
 
 namespace SessionService
 {
@@ -35,6 +37,9 @@ namespace SessionService
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SessionService", Version = "v1" });
             });
+
+            services.AddTransient(typeof(ICustomerRepository), typeof(CustomerRepository));
+            services.AddTransient(typeof(ISegmentRepository), typeof(SegmentRepository));
 
 
             services.AddCors();
