@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "m8j1fzXETDtSjTlacnUAaZHMYHIY7BSFnRmvhbBvMKa8VRvhVkxdEsJULrwGpu9XP3gkY7tnk3AE3Xy2OxmxLg==",
+  "dgSpecHash": "djZvPzNgU9DtGGTeTgg4l3m0P2JCij/v4Y2l2WGA35Ea8LwTz12DD32DGNdvXCnHzL4OFJzhY8tniYWMRqvVvg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ahmet\\Desktop\\Bootcamp\\TgySession\\SessionService\\SessionService.csproj",
   "expectedPackageFiles": [
@@ -58,7 +58,7 @@
     "C:\\Users\\Ahmet\\.nuget\\packages\\microsoft.visualstudio.web.codegenerators.mvc\\5.0.2\\microsoft.visualstudio.web.codegenerators.mvc.5.0.2.nupkg.sha512",
     "C:\\Users\\Ahmet\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Ahmet\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
-    "C:\\Users\\Ahmet\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\Ahmet\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Ahmet\\.nuget\\packages\\npgsql\\5.0.12\\npgsql.5.0.12.nupkg.sha512",
     "C:\\Users\\Ahmet\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\5.0.10\\npgsql.entityframeworkcore.postgresql.5.0.10.nupkg.sha512",
     "C:\\Users\\Ahmet\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
