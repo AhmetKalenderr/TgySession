@@ -40,16 +40,18 @@ namespace SessionService.Models
 
             foreach (var entry in entries)
             {
+                Console.WriteLine(entry.Entity.GetType().ToString());
+
                 if (entry.Entity is Customer)
                 {
                     Customer customer = (Customer)entry.Entity;
                     customer.segment = Segments.Find(customer.SegmentId);
-                    Logs.Add(new Log() { ActionTime = DateTime.Now.ToLocalTime(), ActionType = entry.State.ToString(), Data = JsonConvert.SerializeObject(customer), TableName = "Customer" });
+                    Logs.Add(new Log() { ActionTime = DateTime.Now.ToLocalTime(), ActionType = entry.State == EntityState.Modified ? "Updated" : entry.State.ToString(), Data = JsonConvert.SerializeObject(customer), TableName = "Customer" });
                 }
                 else if (entry.Entity is Segment)
                 {
                     Segment segment = (Segment)entry.Entity;
-                    Logs.Add(new Log() { ActionTime = DateTime.Now.ToLocalTime(), ActionType = entry.State.ToString(), Data = JsonConvert.SerializeObject(segment), TableName = "Segment" });
+                    Logs.Add(new Log() { ActionTime = DateTime.Now.ToLocalTime(), ActionType = entry.State == EntityState.Modified ? "Updated" : entry.State.ToString(), Data = JsonConvert.SerializeObject(segment), TableName = "Segment" });
                 }
 
 

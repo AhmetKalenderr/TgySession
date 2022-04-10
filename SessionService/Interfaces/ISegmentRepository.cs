@@ -4,18 +4,19 @@ using System.Threading.Tasks;
 
 namespace SessionService.Interfaces
 {
-    public interface ISegmentRepository
+    public interface ISegmentRepository : IGenericRepository<Segment>
     {
-        Task<Segment> GetById(int id);
+        //Task<Segment> GetByName(string name);
 
-        Task<List<Segment>> GetAll();
+        //Task<Segment> GetById(int id);
 
-        Task Add(Segment segment);
+        //Task<List<Segment>> GetAll();
 
-        Task Update(int id, Segment segment);
+        //Task Add(Segment segment);
 
-        Task Delete(int id);
+        //Task Update(int id, Segment segment);
 
-        Task<Segment> GetByName(string name);
+        //Task Delete(int id);
+
     }
 }
