@@ -11,15 +11,15 @@ namespace SessionService.Repository
 {
     public class CustomerRepository : GenericRepository<Customer>, ICustomerRepository
     {
-        //protected readonly TgyDatabaseContext _context;
+        protected readonly TgyDatabaseContext _context;
 
 
         public CustomerRepository(TgyDatabaseContext context):base(context)
         {
-            
+            _context = context;
         }
 
-        
+
 
         //public async Task Add(Customer customer)
         //{
@@ -43,10 +43,10 @@ namespace SessionService.Repository
         //    return await _context.Customers.Include(c => c.segment).SingleAsync(c => c.Id == id);
         //}
 
-        //public async Task<Customer> GetByName(string name)
-        //{
-        //   return await _context.Customers.Include(c => c.segment).FirstOrDefaultAsync(c=> c.Name == name);
-        //}
+        public async Task<Customer> GetByName(string name)
+        {
+            return await _context.Customers.Include(c => c.segment).FirstOrDefaultAsync(c => c.Name == name);
+        }
 
         //public async Task Update(int id, Customer customer)
         //{

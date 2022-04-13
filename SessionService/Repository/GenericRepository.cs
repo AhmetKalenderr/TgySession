@@ -13,11 +13,11 @@ namespace SessionService.Repository
         {
             dbContext = context;
         }
-        public async Task<T> GetByName(string name)
-        {
-            //bu metod entitylerin repoları içerisinde belirtilmeli. Şuan için çalışmıyor.
-            return await dbContext.Set<T>().FirstOrDefaultAsync(t => t.Equals(name));
-        }
+        //public async Task<T> GetByName(string name)
+        //{
+        //    //    bu metod entitylerin repoları içerisinde belirtilmeli. Şuan için çalışmıyor.
+        //    return await dbContext.Set<T>().FirstOrDefaultAsync(t => t.Equals(name));
+        //}
 
 
         public async Task Add(T data)

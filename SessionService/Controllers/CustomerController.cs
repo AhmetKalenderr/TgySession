@@ -16,7 +16,6 @@ namespace SessionService.Controllers
 {
     public class CustomerController : Controller
     {
-        private readonly TgyDatabaseContext _databaseContext;
         private readonly ICustomerRepository _customerRepository;
         private readonly IMapper mapper;
         bool success;
@@ -24,9 +23,8 @@ namespace SessionService.Controllers
 
 
 
-        public CustomerController(TgyDatabaseContext tgyDatabaseContext,IMapper mapper,ICustomerRepository customerRepository)
+        public CustomerController(IMapper mapper,ICustomerRepository customerRepository)
         {
-            _databaseContext = tgyDatabaseContext;
             this.mapper = mapper;
             _customerRepository = customerRepository;
         }

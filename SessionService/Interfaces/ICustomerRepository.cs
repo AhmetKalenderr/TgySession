@@ -16,6 +16,6 @@ namespace SessionService.Interfaces
 
         //Task Delete(int id);
 
-        //Task<Customer> GetByName(string name);
+        Task<Customer> GetByName(string name);
     }
 }

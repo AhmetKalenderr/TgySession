@@ -5,7 +5,7 @@ namespace SessionService.Interfaces
 {
     public interface IGenericRepository<T> where T : class
     {
-        Task<T> GetByName(string name);
+        //Task<T> GetByName(string name);
         Task<T> GetById(int id);
 
         Task<List<T>> GetAll();

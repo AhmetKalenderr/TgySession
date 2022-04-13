@@ -10,9 +10,10 @@ namespace SessionService.Repository
 {
     public class SegmentRepository : GenericRepository<Segment>, ISegmentRepository
     {
+        TgyDatabaseContext databaseContext;
         public SegmentRepository(TgyDatabaseContext context): base(context)
         {
-
+            databaseContext = context;
         }
 
         //public async Task Add(Segment segment)
@@ -37,10 +38,10 @@ namespace SessionService.Repository
         //    return await databaseContext.Segments.FindAsync(id);
         //}
 
-        //public async Task<Segment> GetByName(string name)
-        //{
-        //    return await databaseContext.Segments.FirstOrDefaultAsync(c => c.Code == name);
-        //}
+        public async Task<Segment> GetByName(string name)
+        {
+            return await databaseContext.Segments.FirstOrDefaultAsync(c => c.Code == name);
+        }
 
         //public async Task Update(int id, Segment segment)
         //{

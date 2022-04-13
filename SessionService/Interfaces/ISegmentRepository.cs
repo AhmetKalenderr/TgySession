@@ -6,7 +6,7 @@ namespace SessionService.Interfaces
 {
     public interface ISegmentRepository : IGenericRepository<Segment>
     {
-        //Task<Segment> GetByName(string name);
+        Task<Segment> GetByName(string name);
 
         //Task<Segment> GetById(int id);
 

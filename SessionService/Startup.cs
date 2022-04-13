@@ -40,6 +40,7 @@ namespace SessionService
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient(typeof(ICustomerRepository),typeof(CustomerRepository));
             services.AddTransient(typeof(ISegmentRepository),typeof(SegmentRepository));
+            services.AddTransient(typeof(ILogRepository),typeof(LogRepository));
 
 
             services.AddCors();
