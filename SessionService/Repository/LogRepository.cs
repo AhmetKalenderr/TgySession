@@ -2,6 +2,7 @@
 using SessionService.Entities;
 using SessionService.Interfaces;
 using SessionService.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace SessionService.Repository
 
         public async Task<List<Log>> GetByType(string type)
         {
-            return await databaseContext.Logs.Where(l => l.ActionType.Equals(type)).ToListAsync();
+            return await databaseContext.Logs.Where(l =>l.ActionType.ToLower()== type.ToLower()).ToListAsync();
         }
     }
 }
