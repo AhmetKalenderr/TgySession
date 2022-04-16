@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Newtonsoft.Json;
+using SessionService.Attributes;
 using SessionService.Entities;
 using System;
 using System.Collections.Generic;
@@ -40,21 +41,13 @@ namespace SessionService.Models
 
             foreach (var entry in entries)
             {
-                Console.WriteLine(entry.Entity.GetType().ToString());
-
-                if (entry.Entity is Customer)
+                var attributes = (ClassAttributes[])(entry.Entity.GetType()).GetCustomAttributes(typeof(ClassAttributes), true);
+                var className = string.Empty;
+                foreach (var c in attributes)
                 {
-                    Customer customer = (Customer)entry.Entity;
-                    customer.segment = Segments.Find(customer.SegmentId);
-                    Logs.Add(new Log() { ActionTime = DateTime.Now.ToLocalTime(), ActionType = entry.State == EntityState.Modified ? "Updated" : entry.State.ToString(), Data = JsonConvert.SerializeObject(customer), TableName = "Customer" });
+                    className = c.ClassName;
                 }
-                else if (entry.Entity is Segment)
-                {
-                    Segment segment = (Segment)entry.Entity;
-                    Logs.Add(new Log() { ActionTime = DateTime.Now.ToLocalTime(), ActionType = entry.State == EntityState.Modified ? "Updated" : entry.State.ToString(), Data = JsonConvert.SerializeObject(segment), TableName = "Segment" });
-                }
-
-
+                    Logs.Add(new Log() { ActionTime = DateTime.Now.ToLocalTime(), ActionType = entry.State == EntityState.Modified ? "Updated" : entry.State.ToString(), Data = JsonConvert.SerializeObject(entry.Entity), TableName = className});
             }
 
             return base.SaveChangesAsync();

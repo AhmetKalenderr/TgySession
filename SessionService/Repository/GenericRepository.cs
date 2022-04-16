@@ -32,15 +32,15 @@ namespace SessionService.Repository
             await dbContext.SaveChangesAsync();
         }
 
-        public Task<List<T>> GetAll()
-        {
-            return dbContext.Set<T>().ToListAsync();
-        }
+        //public Task<List<T>> GetAll()
+        //{
+        //    return dbContext.Set<T>().ToListAsync();
+        //}
 
-        public async Task<T> GetById(int id)
-        {
-            return await dbContext.Set<T>().FindAsync(id);
-        }
+        //public async Task<T> GetById(int id)
+        //{
+        //    return await dbContext.Set<T>().FindAsync(id);
+        //}
 
 
 

@@ -28,15 +28,15 @@ namespace SessionService.Repository
         //    await databaseContext.SaveChangesAsync();
         //}
 
-        //public async Task<List<Segment>> GetAll()
-        //{
-        //    return await databaseContext.Segments.ToListAsync();
-        //}
+        public async Task<List<Segment>> GetAll()
+        {
+            return await databaseContext.Segments.ToListAsync();
+        }
 
-        //public async Task<Segment> GetById(int id)
-        //{
-        //    return await databaseContext.Segments.FindAsync(id);
-        //}
+        public async Task<Segment> GetById(int id)
+        {
+            return await databaseContext.Segments.FindAsync(id);
+        }
 
         public async Task<Segment> GetByName(string name)
         {

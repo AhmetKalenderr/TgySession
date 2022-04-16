@@ -33,15 +33,15 @@ namespace SessionService.Repository
         //    await _context.SaveChangesAsync();
         //}
 
-        //public async Task<List<Customer>> GetAll()
-        //{
-        //    return await _context.Customers.Include(c => c.segment).ToListAsync();
-        //}
+        public async Task<List<Customer>> GetAll()
+        {
+            return await _context.Customers.Include(c => c.segment).ToListAsync();
+        }
 
-        //public async Task<Customer> GetById(int id)
-        //{
-        //    return await _context.Customers.Include(c => c.segment).SingleAsync(c => c.Id == id);
-        //}
+        public async Task<Customer> GetById(int id)
+        {
+            return await _context.Customers.Include(c => c.segment).SingleAsync(c => c.Id == id);
+        }
 
         public async Task<Customer> GetByName(string name)
         {

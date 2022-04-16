@@ -26,7 +26,10 @@ namespace SessionService
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<TgyDatabaseContext>(db => db.UseNpgsql(connectionString));
 
-
+            services.AddStackExchangeRedisCache(action =>
+            {
+                action.Configuration = "localhost:6379";
+            });
 
             services.AddControllers();
 

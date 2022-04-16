@@ -8,9 +8,9 @@ namespace SessionService.Interfaces
     {
         Task<Segment> GetByName(string name);
 
-        //Task<Segment> GetById(int id);
+        Task<Segment> GetById(int id);
 
-        //Task<List<Segment>> GetAll();
+        Task<List<Segment>> GetAll();
 
         //Task Add(Segment segment);
 

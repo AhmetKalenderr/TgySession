@@ -6,9 +6,9 @@ namespace SessionService.Interfaces
 {
     public interface ICustomerRepository : IGenericRepository<Customer>
     {
-        //Task<Customer> GetById(int id);
+        Task<Customer> GetById(int id);
 
-        //Task<List<Customer>> GetAll();
+        Task<List<Customer>> GetAll();
 
         //Task Add(Customer customer);
 

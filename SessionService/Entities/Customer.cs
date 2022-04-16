@@ -1,7 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using SessionService.Attributes;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SessionService.Entities
 {
+    [ClassAttributes(ClassName = "Customer")]
     public class Customer
     {
         public int Id { get; set; }
