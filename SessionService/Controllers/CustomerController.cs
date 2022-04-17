@@ -8,6 +8,7 @@ using SessionService.DatabaseObject;
 using SessionService.Entities;
 using SessionService.Interfaces;
 using SessionService.Models;
+using SessionService.Services.CacheService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,8 @@ namespace SessionService.Controllers
         bool success;
         string message = String.Empty;
         string getAllKey = "GetAllCustomer";
+        RedisCacheServices redisService;
+
 
 
 
@@ -33,6 +36,8 @@ namespace SessionService.Controllers
             this.mapper = mapper;
             _customerRepository = customerRepository;
             _distributed = distributed;
+            redisService = new RedisCacheServices(distributed);
+
         }
 
 
@@ -50,11 +55,7 @@ namespace SessionService.Controllers
                 success = true;
                 message = "Customer Datası Eklendi";
 
-                //Redisten eski customer listesini siliyoruz.
-                if (await _distributed.GetAsync(getAllKey) != null)
-                {
-                    await _distributed.RemoveAsync(getAllKey);
-                }
+                redisService.DeleteRedisKey(getAllKey);
             }
             catch (Exception e)
             {
@@ -139,11 +140,8 @@ namespace SessionService.Controllers
                 success = true;
                 message = "Data Güncellendi";
 
-                //Redisten eski customer listesini siliyoruz.
-                if (await _distributed.GetAsync(getAllKey) != null)
-                {
-                    await _distributed.RemoveAsync(getAllKey);
-                }
+                redisService.DeleteRedisKey(getAllKey);
+
 
                 //Redisteki customer nesnesini de güncelliyoruz.
                 if (getByIdCustomerCache != null)
@@ -175,28 +173,12 @@ namespace SessionService.Controllers
         public async Task<Result<object>> DeleteCustomer([FromBody]int id)
         {
 
-            var getByIdCustomerCache = await _distributed.GetAsync("Customer get by id:" + id.ToString());
-
-
-
             try
             {
                 await _customerRepository.Delete(id);
 
-
-                //Redisteki customer nesnesini de temizliyoruz.
-                if (getByIdCustomerCache != null)
-                {
-                    Console.WriteLine("Redisten Silindi");
-                    await _distributed.RemoveAsync("Customer get by id:" + id.ToString());
-                }
-
-
-                //Redisten eski customer listesini siliyoruz.
-                if (await _distributed.GetAsync(getAllKey) != null)
-                {
-                    await _distributed.RemoveAsync(getAllKey);
-                }
+                redisService.DeleteRedisKey("Customer get by id:" + id.ToString());
+                redisService.DeleteRedisKey(getAllKey);
 
                 success = true;
                 message = "Başarılı";

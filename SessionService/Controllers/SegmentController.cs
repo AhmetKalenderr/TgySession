@@ -8,6 +8,7 @@ using SessionService.DatabaseObject;
 using SessionService.Entities;
 using SessionService.Interfaces;
 using SessionService.Models;
+using SessionService.Services.CacheService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,20 +27,19 @@ namespace SessionService.Controllers
         private readonly ISegmentRepository _segmentRepository;
         private readonly IDistributedCache _distributed;
         private readonly IMapper mapper;
+        RedisCacheServices redisService;
 
         public SegmentController(ISegmentRepository segmentRepository,IMapper _mapper, IDistributedCache distributed)
         {
             _segmentRepository = segmentRepository;
             mapper = _mapper;
             _distributed = distributed;
+            redisService = new RedisCacheServices(distributed);
         }
-
-
 
         [HttpPost("/addsegment")]
         public async Task<Result<object>> AddSegment([FromBody]string segName)
         {
-
             try
             {
           
@@ -48,13 +48,7 @@ namespace SessionService.Controllers
 
                 message = "Segment Eklendi";
                 success = true;
-
-
-                //Redisten eski segment listesini siliyoruz.
-                if (await _distributed.GetAsync(getAllKey) != null)
-                {
-                    await _distributed.RemoveAsync(getAllKey);
-                }
+                redisService.DeleteRedisKey(getAllKey);
 
             }
             catch (Exception e)
@@ -130,9 +124,7 @@ namespace SessionService.Controllers
 
         public async Task<Result<object>> UpdateSegment([FromBody] UpdateSegmentDto segment)
         {
-            var getByIdSegmentCache = await _distributed.GetAsync("Segment get by id: " + segment.Id);
-
-         
+            var getByIdSegmentCache = await _distributed.GetAsync("Segment get by id: " + segment.Id);    
 
             try
             {
@@ -150,14 +142,9 @@ namespace SessionService.Controllers
                     var options = new DistributedCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromDays(1)).SetAbsoluteExpiration(DateTime.Now.AddMonths(1));
                     await _distributed.SetAsync(_cacheKey, Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(mapper.Map(segment, new Segment()))), options);
 
-
                 }
 
-                //Redisten eski segment listesini siliyoruz.
-                if (await _distributed.GetAsync(getAllKey) != null)
-                {
-                    await _distributed.RemoveAsync(getAllKey);
-                }
+                redisService.DeleteRedisKey(getAllKey);
 
             }
             catch (Exception e)
@@ -183,23 +170,11 @@ namespace SessionService.Controllers
             var getByIdSegmentCache = await _distributed.GetAsync("Segment get by id: " + id.ToString());    
             try
             {
-
                 await _segmentRepository.Delete(id);
 
-                //Redisteki segment verisinide siliyoruz.
-                if (getByIdSegmentCache != null)
-                {
-                    string _cacheKey = "Segment get by id: " + id.ToString();
-                    Console.WriteLine("Redisten Silindi");
-                    await _distributed.RemoveAsync(_cacheKey);
-                }
-                
-                
-                //Redisten eski segment listesini siliyoruz.
-                if (await _distributed.GetAsync(getAllKey) != null)
-                {
-                    await _distributed.RemoveAsync(getAllKey);
-                }
+                redisService.DeleteRedisKey("Segment get by id: " + id.ToString());
+                redisService.DeleteRedisKey(getAllKey);
+
 
                 success = true;
                 message = "Başarılı";
@@ -263,7 +238,6 @@ namespace SessionService.Controllers
                 success = false;
             }
 
-
             return new Result<object>
             {
                 data = segment,
@@ -276,7 +250,6 @@ namespace SessionService.Controllers
 
         public async Task<Result<object>> GetByCodeSegment([FromBody]string code)
         {
-
 
             Segment segment;
             var getByIdSegmentCache = await _distributed.GetAsync("Segment get by id: " + code);
